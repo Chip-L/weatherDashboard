@@ -1,0 +1,23 @@
+body {
+  font-family: "Oxygen", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  margin: 0;
+}
+
+header {
+  background: linear-gradient(to right, blue, navy);
+  color: azure;
+}
+
+.custom-border-bottom {
+  border-bottom: 2px solid black;
+}
+
+.custom-border {
+  border-bottom: 1px solid black;
+}
