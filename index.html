@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <title>Weather Desktop</title>
 
@@ -39,13 +42,48 @@
         <aside class="container col-12 col-md-6 col-lg-3">
           <div class="d-grid gap-3 p-3 col-12 custom-border-bottom">
             <h3 class="m-0">Search for a city:</h3>
-            <input type="text" name="city" id="city-input" />
+            <input
+              type="text"
+              name="city"
+              id="city-input"
+              placeholder="San Diego"
+            />
             <button class="btn btn-primary" type="submit">Search</button>
           </div>
         </aside>
-        <section class="container col-12 col-md-6 col-lg-9">
+        <section class="container pt-3 col-12 col-md-6 col-lg-9">
           <div class="d-grid gap-3 p-3 col-12 custom-border">
             <h2 id="current-city">Atlanta</h2>
+          </div>
+          <div class="d-grid gap-3 p-3 col-12">
+            <h3>5 day forcast</h3>
+            <div class="row justify-content-between px-3">
+              <div class="card col-12 col-md-2 p-0 custom-card-color">
+                <div class="card-body p-2" id="card-1">
+                  This is some text within a card body.
+                </div>
+              </div>
+              <div class="card col-12 col-md-2 p-0 custom-card-color">
+                <div class="card-body p-2" id="card-2">
+                  This is some text within a card body.
+                </div>
+              </div>
+              <div class="card col-12 col-md-2 p-0 custom-card-color">
+                <div class="card-body p-2" id="card-3">
+                  This is some text within a card body.
+                </div>
+              </div>
+              <div class="card col-12 col-md-2 p-0 custom-card-color">
+                <div class="card-body p-2" id="card-4">
+                  This is some text within a card body.
+                </div>
+              </div>
+              <div class="card col-12 col-md-2 p-0 custom-card-color">
+                <div class="card-body p-2" id="card-5">
+                  This is some text within a card body.
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -59,6 +97,11 @@
       crossorigin="anonymous"
     ></script>
     <!-- Bootstrap -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
