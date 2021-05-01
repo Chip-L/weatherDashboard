@@ -2,7 +2,6 @@
 const storageKey = "weatherCityList";
 const maxInHistoryList = 10;
 
-let citySearchForm = $("form");
 let getCityList = () => JSON.parse(localStorage.getItem(storageKey)) || [];
 
 function getAPIByCity() {
@@ -30,16 +29,18 @@ function getAPIByCity() {
     })
     .then(function (data) {
       // call function to display the forcast
-      getWeather(cityName, data.coord);
+      // getWeather(cityName, data.coord);
 
       // store data to local (check to be sure no duplicates)
       let objCity = {
-        name: cityName,
-        coords: data.coord,
+        city: cityName,
+        latitude: data.coord.lat,
+        longitude: data.coord.lon,
       };
 
+      console.log(objCity);
       // if the cityList does not include the cityName, then add it to the list else do nothing
-      if (!cityList.some((city) => city.name === objCity.name)) {
+      if (!cityList.some((city) => city.city === objCity.city)) {
         cityList.unshift(objCity);
         if (cityList.length > maxInHistoryList) {
           cityList.length = maxInHistoryList;
@@ -61,30 +62,29 @@ function showCityList() {
   // clear the history section
   searchHistory.text("");
 
-  console.log(searchHistory);
-  console.log("cityList:", cityList);
   for (let i = 0; i < cityList.length; i++) {
-    console.log(i);
-
-    // searchHistory
-    //   .append("<button>")
-    //   .addClass("btn btn-secondary mb-3")
-    //   // .dataset("name", cityList[i].name)
-    //   // .dataset("coords", cityList[i].coords)
-    //   .text(cityList[i].name);
-
     let newButton =
-      "<button class=('btn btn-secondary mb-3') data-name'" +
-      cityList[i].name +
-      "' data-coord='" +
-      cityList[i].coord +
+      "<button class='btn btn-secondary mb-3' data-latitude='" +
+      cityList[i].latitude +
+      "' data-longitude='" +
+      cityList[i].longitude +
       "'>" +
-      cityList[i].name +
+      cityList[i].city +
       "</button>";
-    console.log("newButton text:", newButton);
 
     searchHistory.append(newButton);
   }
+
+  searchHistory.children().on("click", function () {
+    let objCity = {
+      city: $(this).text(),
+      latitude: $(this).data("latitude"),
+      longitude: $(this).data("longitude"),
+    };
+
+    console.log("click", objCity);
+  });
+  console.log(searchHistory.children());
 }
 
 function getWeather(strCityName, objCoord) {
@@ -92,9 +92,12 @@ function getWeather(strCityName, objCoord) {
 }
 
 $(document).ready(function () {
+  let citySearchForm = $("form");
+
   citySearchForm.on("submit", function (event) {
     event.preventDefault();
     getAPIByCity();
+    $("#city-input").val("");
   });
 
   showCityList();
