@@ -15,7 +15,7 @@ function getAPIByCity() {
     return; // no entry no reason to execut any further
   }
 
-  // api.openweathermap.org/data/2.5/weather?q={city name}{,{state code},{country code}}&units={standard|metric|imperial}&appid={API key}
+  // api.openweathermap.org/data/2.5/weather?q={city name}{,{state code}{,{country code}}}&units={standard|metric|imperial}&appid={API key}
   requestUrl =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
@@ -29,9 +29,6 @@ function getAPIByCity() {
       return response.json();
     })
     .then(function (data) {
-      // Use the console to examine the response
-      // console.log("data:", data);
-
       // call function to display the forcast
       getWeather(cityName, data.coord);
 
@@ -62,25 +59,31 @@ function showCityList() {
   console.log("showCityList()");
 
   // clear the history section
-  searchHistory.textContent = "";
+  searchHistory.text("");
 
   console.log(searchHistory);
   console.log("cityList:", cityList);
-  for (let i = 0; i < getCityList.length; i++) {
-    let newButton = $("<button>");
-    newButton.text(getCityList[i].name);
-    newButton.appendTo(searchHistory);
-    // searchHistory.add(newButton);
+  for (let i = 0; i < cityList.length; i++) {
+    console.log(i);
 
-    console.log(newButton);
-    // newButton.addClass('btn btn-secondary mb-3'). data=name'" +
-    //     getCityList[i].name +
-    //     "' data-coord='" +
-    //     getCityList[i].coord +
-    //     "'>" +
-    //     getCityList[i].name +
-    //     "</button>"
-    // );
+    // searchHistory
+    //   .append("<button>")
+    //   .addClass("btn btn-secondary mb-3")
+    //   // .dataset("name", cityList[i].name)
+    //   // .dataset("coords", cityList[i].coords)
+    //   .text(cityList[i].name);
+
+    let newButton =
+      "<button class=('btn btn-secondary mb-3') data-name'" +
+      cityList[i].name +
+      "' data-coord='" +
+      cityList[i].coord +
+      "'>" +
+      cityList[i].name +
+      "</button>";
+    console.log("newButton text:", newButton);
+
+    searchHistory.append(newButton);
   }
 }
 
