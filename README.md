@@ -1,8 +1,8 @@
-"# Weather Dashboard
+# Weather Dashboard
 
 ## Description
 
-build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+Build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
 
 Use the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities. Read through the documentation for setup and usage instructions. You will use `localStorage` to store any persistent data.
 
@@ -60,4 +60,4 @@ Study Group:
 - Jared Sutch
 - Lacey Pape
 - Alex Jurgs
-- Tarik Maggio"
+- Tarik Maggio
