@@ -13,6 +13,7 @@ Weather Channel PsuedoCode
 		create cityMemoryBtn
 			if cityName has "," add a space after comma(s)
 			set dataset for lat and lon
+		add information to localStorage
 	on Fail:
 		if .cod=404:
 			Display Main section only: Sorry, cityName not found
@@ -52,6 +53,9 @@ Weather Channel PsuedoCode
 			Display Main section only: Sorry, cityName not found
 		if .cod=429
 			display "Too many calls this month, please update subscription"
+			
+4. On load
+	populate list of researched cities from Local Storage
 			
 ToDo: hide API keys		
 			
