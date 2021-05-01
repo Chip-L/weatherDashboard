@@ -37,8 +37,8 @@
       <div class="row p-3">
         <!-- Get city search area -->
         <aside class="container col-12 col-md-6 col-lg-3">
+          <!-- form to get the city to search on -->
           <form class="row g-3 custom-border-bottom">
-            <!-- <div class="col-auto"> -->
             <label for="city" class="form-label h3 fw-bold"
               >Search for a city:</label
             >
@@ -49,12 +49,11 @@
               name="city"
               placeholder="City (no state)"
             />
-            <button id="search-city" class="btn custom-button-color mb-3">
-              <!-- type="submit" -->
-              Search
-            </button>
+            <button class="btn custom-button-color mb-3">Search</button>
           </form>
-          <div id="city-list" class="d-grid gap-3 p-3 col-12"></div>
+
+          <!-- search history section -- populates from JS -->
+          <div id="search-history" class="d-grid gap-3 p-3 col-12"></div>
         </aside>
 
         <!-- Display Weather Areas --- this starts off hidden -->
