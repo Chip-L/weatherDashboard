@@ -15,6 +15,14 @@ header {
   color: azure;
 }
 
+.hide {
+  visibility: hidden;
+}
+
+.custom-button-color {
+  background: #5098e6;
+  color: #c7dfe8;
+}
 .custom-border-bottom {
   border-bottom: 2px solid black;
 }
