@@ -17,11 +17,7 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
-    <!-- jQuery UI -->
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -38,11 +34,14 @@
     </header>
 
     <main class="container">
-      <div class="row">
+      <div class="row p-3">
         <!-- Get city search area -->
         <aside class="container col-12 col-md-6 col-lg-3">
-          <div class="d-grid gap-3 p-3 col-12 custom-border-bottom">
-            <h3 class="m-0">Search for a city:</h3>
+          <form class="row g-3 custom-border-bottom">
+            <!-- <div class="col-auto"> -->
+            <label for="staticEmail2" class="form-label h3 fw-bold"
+              >Search for a city:</label
+            >
             <input
               id="city-input"
               class="form-control"
@@ -50,19 +49,16 @@
               name="city"
               placeholder="San Diego"
             />
-            <button
-              id="search-city"
-              class="btn custom-button-color"
-              type="submit"
-            >
+            <button id="search-city" class="btn custom-button-color mb-3">
+              <!-- type="submit" -->
               Search
             </button>
-          </div>
+          </form>
           <div id="city-list" class="d-grid gap-3 p-3 col-12"></div>
         </aside>
 
         <!-- Display Weather Areas --- this starts off hidden -->
-        <section class="container pt-3 col-12 col-md-6 col-lg-9 hide">
+        <section class="container pt-3 col-12 col-md-6 col-lg-9">
           <div class="d-grid gap-3 p-3 col-12 custom-border">
             <h2 id="current-city">Atlanta</h2>
           </div>
@@ -116,15 +112,8 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- jQuery UI -->
-    <script
-      src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-      integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-      crossorigin="anonymous"
-    ></script>
-
     <!-- time manager -->
-    <script src="luxon.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <!-- My script -->
     <script src="./assets/js/script.js"></script>
