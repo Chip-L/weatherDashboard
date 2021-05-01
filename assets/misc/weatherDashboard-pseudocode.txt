@@ -2,9 +2,21 @@ Weather Channel PsuedoCode
 
 1. Click Search button event listener:
 	if cityName has ",", then remove spaces around comma only
-	store cityName 
+	  /*
+			this section is going to take some work... leaving in as a ToDo. The state must be in the form "us-co" (https://en.wikipedia.org/wiki/ISO_3166) -- I'm not sure there is proper support Aurora,us-co returns the same as Aurora,us-il - plus there is no state descripter in the properties.
+			if (cityName.includes(",")) {
+				// while incase there are multiple spaces before/after the comma
+				while (cityName.includes(", ")) {
+					cityName = cityName.replaceAll(", ", ",");
+				}
+				while (cityName.includes(" ,")) {
+					cityName = cityName.replaceAll(" ,", ",");
+				}
+			}
+			console.log(cityName);
+		*/
 
-	fetch cityName:
+	fetch by cityName:
 		// api.openweathermap.org/data/2.5/weather?q={city name}{,{state code},{country code}}&units={standard|metric|imperial}&appid={API key}
 		
 	on Success:
