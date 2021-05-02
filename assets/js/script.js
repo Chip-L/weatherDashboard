@@ -17,7 +17,7 @@ function getAPIByCity() {
 
   // api.openweathermap.org/data/2.5/weather?q={city name}{,{state code}{,{country code}}}&units={standard|metric|imperial}&appid={API key}
   requestUrl =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&units=imperial&appid=feff70f8d612132ecb7ca03754f46b78";
   // console.log(requestUrl);
