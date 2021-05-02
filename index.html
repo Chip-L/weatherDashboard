@@ -59,7 +59,7 @@
         <!-- Display Weather Areas --- this starts off hidden -->
         <section class="container col-12 col-md-6 col-lg-9">
           <!-- current forcast -->
-          <div class="d-grid gap-3 p-3 col-12 custom-border">
+          <div id="current" class="d-grid gap-3 p-3 col-12 custom-border hide">
             <div class="h2 fw-bold">
               <span id="current-city"></span>
               <span id="current-date"></span>
@@ -74,34 +74,58 @@
             </div>
           </div>
 
-          <div class="d-grid gap-3 p-3 col-12">
+          <div class="d-grid gap-3 p-3 col-12 hide" id="five-day-forcast">
             <div class="h3 fw-bold">5 day forcast</div>
             <!-- 5 day forcast -->
             <div class="row justify-content-between px-3">
               <div class="card col-12 col-md-2 p-0 custom-card-color">
                 <div class="card-body p-2" id="card-1">
-                  This is some text within a card body.
+                  <span class="fdf-date"></span><br />
+                  <img class="fdf-icon" /><br />
+                  High: <span class="fdf-highTemp"></span><br />
+                  Low: <span class="fdf-lowTemp"></span><br />
+                  Wind: <span class="fdf-wind"></span><br />
+                  Humidity: <span class="fdf-humidity"></span>
                 </div>
               </div>
               <div class="card col-12 col-md-2 p-0 custom-card-color">
                 <div class="card-body p-2" id="card-2">
-                  This is some text within a card body.
+                  <span class="fdf-date"></span><br />
+                  <img class="fdf-icon" /><br />
+                  High: <span class="fdf-highTemp"></span><br />
+                  Low: <span class="fdf-lowTemp"></span><br />
+                  Wind: <span class="fdf-wind"></span><br />
+                  Humidity: <span class="fdf-humidity"></span>
                 </div>
               </div>
               <div class="card col-12 col-md-2 p-0 custom-card-color">
                 <div class="card-body p-2" id="card-3">
-                  This is some text within a card body.
+                  <span class="fdf-date"></span><br />
+                  <img class="fdf-icon" /><br />
+                  High: <span class="fdf-highTemp"></span><br />
+                  Low: <span class="fdf-lowTemp"></span><br />
+                  Wind: <span class="fdf-wind"></span><br />
+                  Humidity: <span class="fdf-humidity"></span>
                 </div>
               </div>
               <div class="card col-12 col-md-2 p-0 custom-card-color">
                 <div class="card-body p-2" id="card-4">
-                  This is some text within a card body.
+                  <span class="fdf-date"></span><br />
+                  <img class="fdf-icon" /><br />
+                  High: <span class="fdf-highTemp"></span><br />
+                  Low: <span class="fdf-lowTemp"></span><br />
+                  Wind: <span class="fdf-wind"></span><br />
+                  Humidity: <span class="fdf-humidity"></span>
                 </div>
               </div>
               <div class="card col-12 col-md-2 p-0 custom-card-color">
-                <div class="cloud">
-                  <!-- "card-body p-2" id="card-5"> -->
-                  This is some text within a card body.
+                <div class="card-body p-2" id="card-5">
+                  <span class="fdf-date"></span><br />
+                  <img class="fdf-icon" /><br />
+                  High: <span class="fdf-highTemp"></span><br />
+                  Low: <span class="fdf-lowTemp"></span><br />
+                  Wind: <span class="fdf-wind"></span><br />
+                  Humidity: <span class="fdf-humidity"></span>
                 </div>
               </div>
             </div>

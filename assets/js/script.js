@@ -112,17 +112,19 @@ function getWeather(objCity) {
     .then(function (data) {
       console.log(data);
       let imageSrc =
-        "http://openweathermap.org/img/wn/" +
+        "https://openweathermap.org/img/wn/" +
         data.current.weather[0].icon +
-        "@2x.png";
+        ".png";
 
+      // set up current section
+      $("#current").removeClass("hide");
       $("#current-city").text(objCity.city);
       $("#current-date").text(moment(data.dt).format("(MM/DD/YYYY)"));
       $("#current-icon")
         .attr("src", imageSrc)
         .attr("alt", data.current.weather[0].description);
       $("#current-temp").text(data.current.temp + degreeSymbol + "F");
-      $("#current-wind").text(data.current.wind_speed + "MPH");
+      $("#current-wind").text(data.current.wind_speed + " MPH");
       $("#current-humidity").text(data.current.humidity + "%");
       $("#current-uvi").text(data.current.uvi);
 
@@ -141,7 +143,40 @@ function getWeather(objCity) {
       } else {
         $("#current-uvi").addClass("extremeUV");
       }
-    });
+
+      // set up 5 day forcast cards
+      let fiveDayForcast = data.daily.slice(1, 6); // 0 is today's forcast
+      let cardList = $(".card-body");
+      $("#five-day-forcast").removeClass("hide"); // show section
+
+      for (let i = 0; i < fiveDayForcast.length; i++) {
+        imageSrc =
+          "https://openweathermap.org/img/wn/" +
+          fiveDayForcast[i].weather[0].icon +
+          ".png";
+
+        console.log(fiveDayForcast[i]);
+        $(cardList[i])
+          .find(".fdf-date")
+          .text(moment.unix(fiveDayForcast[i].dt).format("MM/DD/YYYY"));
+        $(cardList[i])
+          .find(".fdf-img")
+          .attr("src", imageSrc)
+          .attr("alt", data.current.weather[0].description);
+        $(cardList[i])
+          .find(".fdf-highTemp")
+          .text(fiveDayForcast[i].temp.max + degreeSymbol + "F");
+        $(cardList[i])
+          .find(".fdf-lowTemp")
+          .text(fiveDayForcast[i].temp.min + degreeSymbol + "F");
+        $(cardList[i])
+          .find(".fdf-wind")
+          .text(fiveDayForcast[i].wind_speed + " MPH");
+        $(cardList[i])
+          .find(".fdf-humidity")
+          .text(fiveDayForcast[i].humidity + "%");
+      }
+    }); // end data function
 }
 
 $(document).ready(function () {
