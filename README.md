@@ -61,3 +61,5 @@ Study Group:
 - Lacey Pape
 - Alex Jurgs
 - Tarik Maggio
+
+Wikimedia Foundation. (2021, March 13). Ultraviolet index. Wikipedia. https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage.

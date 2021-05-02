@@ -35,3 +35,26 @@ header {
   color: azure;
   font-weight: bold;
 }
+
+.lowUV {
+  background-color: green;
+  color: azure;
+}
+
+.moderateUV {
+  background-color: yellow;
+}
+
+.highUV {
+  background-color: orange;
+}
+
+.veryHighUV {
+  background-color: red;
+  color: azure;
+}
+
+.extremeUV {
+  background-color: violet;
+  color: azure;
+}
