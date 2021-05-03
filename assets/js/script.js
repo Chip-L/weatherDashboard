@@ -102,26 +102,29 @@ function getWeather(objCity) {
     "&lon=" +
     objCity.longitude +
     "&exclude=minutely,hourly&units=imperial&appid=feff70f8d612132ecb7ca03754f46b78";
+  console.log("requestUrl:", requestUrl);
 
   fetch(requestUrl)
     .then(function (response) {
       // Use the console to examine the response
       console.log(response.status);
+
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      let imageSrc =
-        "https://openweathermap.org/img/wn/" +
-        data.current.weather[0].icon +
-        ".png";
-
+      console.log("data:", data);
+      console.log("data.dt", data.dt, "data.current.dt:", data.current.dt);
       // set up current section
       $("#current").removeClass("hide");
       $("#current-city").text(objCity.city);
-      $("#current-date").text(moment(data.dt).format("(MM/DD/YYYY)"));
+      $("#current-date").text(
+        moment.unix(data.current.dt).format("(MM/DD/YYYY)")
+      );
       $("#current-icon")
-        .attr("src", imageSrc)
+        .attr(
+          "src",
+          `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`
+        )
         .attr("alt", data.current.weather[0].description);
       $("#current-temp").text(data.current.temp + degreeSymbol + "F");
       $("#current-wind").text(data.current.wind_speed + " MPH");
@@ -150,18 +153,17 @@ function getWeather(objCity) {
       $("#five-day-forcast").removeClass("hide"); // show section
 
       for (let i = 0; i < fiveDayForcast.length; i++) {
-        imageSrc =
-          "https://openweathermap.org/img/wn/" +
-          fiveDayForcast[i].weather[0].icon +
-          ".png";
+        // console.log(fiveDayForcast[i]);
 
-        console.log(fiveDayForcast[i]);
         $(cardList[i])
           .find(".fdf-date")
           .text(moment.unix(fiveDayForcast[i].dt).format("MM/DD/YYYY"));
         $(cardList[i])
-          .find(".fdf-img")
-          .attr("src", imageSrc)
+          .find(".fdf-icon")
+          .attr(
+            "src",
+            `https://openweathermap.org/img/wn/${fiveDayForcast[i].weather[0].icon}.png`
+          )
           .attr("alt", data.current.weather[0].description);
         $(cardList[i])
           .find(".fdf-highTemp")
