@@ -1,9 +1,9 @@
-Weather Channel PsuedoCode
+Weather Channel Pseudocode 
 
 1. Click Search button event listener:
 	if cityName has ",", then remove spaces around comma only
 	  /*
-			this section is going to take some work... leaving in as a ToDo. The state must be in the form "us-co" (https://en.wikipedia.org/wiki/ISO_3166) -- I'm not sure there is proper support Aurora,us-co returns the same as Aurora,us-il - plus there is no state descripter in the properties.
+			this section is going to take some work... leaving in as a ToDo. The state must be in the form "us-co" (https://en.wikipedia.org/wiki/ISO_3166) -- I'm not sure there is proper support Aurora,us-co returns the same as Aurora,us-il - plus there is no state descriptor in the properties.
 			if (cityName.includes(",")) {
 				// while incase there are multiple spaces before/after the comma
 				while (cityName.includes(", ")) {
@@ -41,7 +41,7 @@ Weather Channel PsuedoCode
 	"https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude=minutely,hourly&units=imperial&appid=feff70f8d612132ecb7ca03754f46b78"
 	
 	on success:
-		unhide section
+		un-hide section
 		populate current data line 1:
 			City: cityName
 			Date: .current.dt (convert unix to local?)
@@ -53,7 +53,7 @@ Weather Channel PsuedoCode
 			Humidity: .current.main.humidity
 			UV Index: .current.uvi <-- apply favorable/moderate/severe color code
 		
-		populate current data on Cards using daily[1-5] (0 is current day's forcast)
+		populate current data on Cards using daily[1-5] (0 is current day's forecast)
 			date: .daily[].dt
 			icon: http://openweathermap.org/img/wn/" + .daily[].weather[0].icon + "@2x.png"
 			High: .daily[].temp.max

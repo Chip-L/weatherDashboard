@@ -12,7 +12,7 @@ function getAPIByCity() {
 
   console.log("getAPIByCity()", cityName);
   if (cityName === "") {
-    return; // no entry no reason to execut any further
+    return; // no entry no reason to execute any further
   }
 
   // api.openweathermap.org/data/2.5/weather?q={city name}{,{state code}{,{country code}}}&units={standard|metric|imperial}&appid={API key}
@@ -37,7 +37,7 @@ function getAPIByCity() {
         longitude: data.coord.lon,
       };
 
-      // call function to display the forcast
+      // call function to display the forecast
       getWeather(objCity);
 
       console.log(objCity);
@@ -86,7 +86,7 @@ function showCityList() {
 
     // console.log("click", objCity);
 
-    // call function to display the forcast
+    // call function to display the forecast
     getWeather(objCity);
   });
   // console.log(searchHistory.children());
@@ -147,36 +147,36 @@ function getWeather(objCity) {
         $("#current-uvi").addClass("extremeUV");
       }
 
-      // set up 5 day forcast cards
-      let fiveDayForcast = data.daily.slice(1, 6); // 0 is today's forcast
+      // set up 5 day forecast cards
+      let fiveDayForecast = data.daily.slice(1, 6); // 0 is today's forecast
       let cardList = $(".card-body");
-      $("#five-day-forcast").removeClass("hide"); // show section
+      $("#five-day-forecast").removeClass("hide"); // show section
 
-      for (let i = 0; i < fiveDayForcast.length; i++) {
-        // console.log(fiveDayForcast[i]);
+      for (let i = 0; i < fiveDayForecast.length; i++) {
+        // console.log(fiveDayForecast[i]);
 
         $(cardList[i])
           .find(".fdf-date")
-          .text(moment.unix(fiveDayForcast[i].dt).format("MM/DD/YYYY"));
+          .text(moment.unix(fiveDayForecast[i].dt).format("MM/DD/YYYY"));
         $(cardList[i])
           .find(".fdf-icon")
           .attr(
             "src",
-            `https://openweathermap.org/img/wn/${fiveDayForcast[i].weather[0].icon}.png`
+            `https://openweathermap.org/img/wn/${fiveDayForecast[i].weather[0].icon}.png`
           )
           .attr("alt", data.current.weather[0].description);
         $(cardList[i])
           .find(".fdf-highTemp")
-          .text(fiveDayForcast[i].temp.max + degreeSymbol + "F");
+          .text(fiveDayForecast[i].temp.max + degreeSymbol + "F");
         $(cardList[i])
           .find(".fdf-lowTemp")
-          .text(fiveDayForcast[i].temp.min + degreeSymbol + "F");
+          .text(fiveDayForecast[i].temp.min + degreeSymbol + "F");
         $(cardList[i])
           .find(".fdf-wind")
-          .text(fiveDayForcast[i].wind_speed + " MPH");
+          .text(fiveDayForecast[i].wind_speed + " MPH");
         $(cardList[i])
           .find(".fdf-humidity")
-          .text(fiveDayForcast[i].humidity + "%");
+          .text(fiveDayForecast[i].humidity + "%");
       }
     }); // end data function
 }
