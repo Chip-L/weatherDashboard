@@ -36,7 +36,7 @@
     <main class="container">
       <div class="row p-3">
         <!-- Get city search area -->
-        <aside class="container col-12 col-md-6 col-lg-3">
+        <aside class="col-12 col-md-6 col-lg-3">
           <!-- form to get the city to search on -->
           <form class="row g-3 custom-border-bottom">
             <label for="city" class="form-label h3 fw-bold"
@@ -56,10 +56,18 @@
           <div id="search-history" class="row g-3 pt-3"></div>
         </aside>
 
+        <!-- Display error section -->
+        <section id="error" class="container col-12 col-md-6 col-lg-9 hide">
+          <!-- Display error section -->
+          <div class="d-grid gap-3 p-3 col-12 custom-border">
+            <div id="error-message" class="h3 fw-bold"></div>
+          </div>
+        </section>
+
         <!-- Display Weather Areas --- this starts off hidden -->
-        <section class="container col-12 col-md-6 col-lg-9">
+        <section id="weather" class="container col-12 col-md-6 col-lg-9 hide">
           <!-- current forecast -->
-          <div id="current" class="d-grid gap-3 p-3 col-12 custom-border hide">
+          <div id="current" class="d-grid gap-3 p-3 col-12 custom-border">
             <div class="h2 fw-bold">
               <span id="current-city"></span>
               <span id="current-date"></span>
@@ -74,7 +82,7 @@
             </div>
           </div>
 
-          <div class="d-grid gap-3 p-3 col-12 hide" id="five-day-forcast">
+          <div id="five-day-forcast" class="d-grid gap-3 p-3 col-12">
             <div class="h3 fw-bold">5 day forecast</div>
             <!-- 5 day forecast -->
             <div class="row justify-content-between px-3">

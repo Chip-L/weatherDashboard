@@ -26,11 +26,21 @@ function getAPIByCity() {
     .then(function (response) {
       // Use the console to examine the response
       console.log(response.status);
+      // if (response === 200) {
       return response.json();
+      // }
+      // console.log("throw")
+      // throw response.json();
     })
     .then(function (data) {
       // create a city object to keep information together
       // data.name will have proper capitalization of the name
+      console.log(data);
+      if (!data[0]) {
+        displayError(cityName + " could not be found.");
+        return;
+      }
+
       let objCity = {
         city: data.name,
         latitude: data.coord.lat,
@@ -52,7 +62,21 @@ function getAPIByCity() {
 
       // call function to add buttons on to the  city list
       showCityList();
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log(error.cod);
+
+      displayError(error.cod + ": " + error.message);
     });
+}
+
+function displayError(msg) {
+  $("#error").removeClass("hide");
+  $("#weather").addClass("hide");
+  // $("#five-day-forecast").addClass("hide");
+
+  $("#error-message").text(msg);
 }
 
 function showCityList() {
@@ -113,9 +137,10 @@ function getWeather(objCity) {
     })
     .then(function (data) {
       console.log("data:", data);
-      console.log("data.dt", data.dt, "data.current.dt:", data.current.dt);
+
       // set up current section
-      $("#current").removeClass("hide");
+      $("#error").addClass("hide");
+      $("#weather").removeClass("hide");
       $("#current-city").text(objCity.city);
       $("#current-date").text(
         moment.unix(data.current.dt).format("(MM/DD/YYYY)")
@@ -150,7 +175,7 @@ function getWeather(objCity) {
       // set up 5 day forecast cards
       let fiveDayForecast = data.daily.slice(1, 6); // 0 is today's forecast
       let cardList = $(".card-body");
-      $("#five-day-forecast").removeClass("hide"); // show section
+      // $("#five-day-forecast").removeClass("hide"); // show section
 
       for (let i = 0; i < fiveDayForecast.length; i++) {
         // console.log(fiveDayForecast[i]);
@@ -178,7 +203,10 @@ function getWeather(objCity) {
           .find(".fdf-humidity")
           .text(fiveDayForecast[i].humidity + "%");
       }
-    }); // end data function
+    }) // end data function
+    .catch(function (error) {
+      //do something
+    });
 }
 
 $(document).ready(function () {

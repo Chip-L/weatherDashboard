@@ -15,7 +15,7 @@ header {
 }
 
 .hide {
-  visibility: hidden;
+  display: none;
 }
 
 .custom-button-color {
