@@ -6,6 +6,8 @@ Build a weather dashboard that will run in the browser and feature dynamically u
 
 Use the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities. Read through the documentation for setup and usage instructions. You will use `localStorage` to store any persistent data.
 
+This was a good project. I have had troubles getting 3rd party APIs to work in the past. I'm not pleased with how the code came out on this one, so I started a new project and am refactoring it to make the code cleaner and easier to maintain. This works though. I found bootstrap a challenge. It didn't "just work". I had to play with the formatting quite a bit for things to display as I wanted them.
+
 ## Table of Contents
 
 - [User Story](#user-story)
