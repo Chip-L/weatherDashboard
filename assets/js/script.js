@@ -10,7 +10,6 @@ function getAPIByCity() {
   let cityList = getCityList();
   let cityName = $("#city-input").val();
 
-  console.log("getAPIByCity()", cityName);
   if (cityName === "") {
     return; // no entry no reason to execute any further
   }
@@ -20,27 +19,26 @@ function getAPIByCity() {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&units=imperial&appid=feff70f8d612132ecb7ca03754f46b78";
-  // console.log(requestUrl);
 
   fetch(requestUrl)
     .then(function (response) {
-      // Use the console to examine the response
-      console.log(response.status);
-      // if (response === 200) {
       return response.json();
-      // }
-      // console.log("throw")
-      // throw response.json();
     })
     .then(function (data) {
-      // create a city object to keep information together
-      // data.name will have proper capitalization of the name
-      console.log(data);
-      if (!data[0]) {
-        displayError(cityName + " could not be found.");
-        return;
+      // console.log("data:", data);
+
+      //error catch for bad data returned
+      if (data.cod != 200) {
+        if (data.cod == 404) {
+          displayError('"' + cityName + '" could not be found.');
+          return;
+        } else {
+          displayError(data.cod + ": " + data.message);
+          return;
+        }
       }
 
+      // data.name will have proper capitalization of the name
       let objCity = {
         city: data.name,
         latitude: data.coord.lat,
@@ -50,7 +48,6 @@ function getAPIByCity() {
       // call function to display the forecast
       getWeather(objCity);
 
-      console.log(objCity);
       // if the cityList does not include the cityName, then add it to the list else do nothing
       if (!cityList.some((city) => city.city === objCity.city)) {
         cityList.unshift(objCity);
@@ -62,19 +59,12 @@ function getAPIByCity() {
 
       // call function to add buttons on to the  city list
       showCityList();
-    })
-    .catch(function (error) {
-      console.log(error);
-      console.log(error.cod);
-
-      displayError(error.cod + ": " + error.message);
     });
 }
 
 function displayError(msg) {
   $("#error").removeClass("hide");
   $("#weather").addClass("hide");
-  // $("#five-day-forecast").addClass("hide");
 
   $("#error-message").text(msg);
 }
@@ -82,8 +72,6 @@ function displayError(msg) {
 function showCityList() {
   let cityList = getCityList();
   let searchHistory = $("#search-history");
-
-  console.log("showCityList()");
 
   // clear the history section
   searchHistory.text("");
@@ -108,17 +96,12 @@ function showCityList() {
       longitude: $(this).data("longitude"),
     };
 
-    // console.log("click", objCity);
-
     // call function to display the forecast
     getWeather(objCity);
   });
-  // console.log(searchHistory.children());
 }
 
 function getWeather(objCity) {
-  console.log("getWeather(", objCity, ")");
-
   // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={current,minutely,hourly,daily,alerts}&units={units}&appid={APIKey}
   let requestUrl =
     "https://api.openweathermap.org/data/2.5/onecall?lat=" +
@@ -126,17 +109,13 @@ function getWeather(objCity) {
     "&lon=" +
     objCity.longitude +
     "&exclude=minutely,hourly&units=imperial&appid=feff70f8d612132ecb7ca03754f46b78";
-  console.log("requestUrl:", requestUrl);
 
   fetch(requestUrl)
     .then(function (response) {
-      // Use the console to examine the response
-      console.log(response.status);
-
       return response.json();
     })
     .then(function (data) {
-      console.log("data:", data);
+      // console.log("data:", data);
 
       // set up current section
       $("#error").addClass("hide");
@@ -159,7 +138,7 @@ function getWeather(objCity) {
       $("#current-uvi").removeClass(
         "lowUV moderateUV highUV veryHighUV extremeUV"
       );
-      // https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage
+      // values from: https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage
       if (data.current.uvi <= 2) {
         $("#current-uvi").addClass("lowUV");
       } else if (data.current.uvi <= 5) {
@@ -175,11 +154,8 @@ function getWeather(objCity) {
       // set up 5 day forecast cards
       let fiveDayForecast = data.daily.slice(1, 6); // 0 is today's forecast
       let cardList = $(".card-body");
-      // $("#five-day-forecast").removeClass("hide"); // show section
 
       for (let i = 0; i < fiveDayForecast.length; i++) {
-        // console.log(fiveDayForecast[i]);
-
         $(cardList[i])
           .find(".fdf-date")
           .text(moment.unix(fiveDayForecast[i].dt).format("MM/DD/YYYY"));
@@ -203,20 +179,13 @@ function getWeather(objCity) {
           .find(".fdf-humidity")
           .text(fiveDayForecast[i].humidity + "%");
       }
-    }) // end data function
-    .catch(function (error) {
-      //do something
     });
-}
+} // end getWeather function
 
-$(document).ready(function () {
-  let citySearchForm = $("form");
-
-  citySearchForm.on("submit", function (event) {
-    event.preventDefault();
-    getAPIByCity();
-    $("#city-input").val("");
-  });
-
-  showCityList();
+$("form").on("submit", function (event) {
+  event.preventDefault();
+  getAPIByCity();
+  $("#city-input").val("");
 });
+
+showCityList();
